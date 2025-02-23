@@ -1,1 +1,0 @@
-#converter o audio do GravacaoVoz em texto, caso a palavra Pesquisar for falada
