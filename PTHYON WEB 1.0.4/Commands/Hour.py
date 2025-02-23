@@ -1,3 +1,9 @@
+# AI de coleta da HORA
+# transformar tudo isso em uma função que possa ser chamada
+
+# !!!
+# Se a estrutura da pesquisa se mantiver a mesma, a coleta
+# dos dados vei ocorrer conforme o esperado
 from datetime import datetime, date
 
 #Coleta do ANO/MES/DIA
