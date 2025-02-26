@@ -15,8 +15,14 @@
 #     if estensao == ".mp3" or estensao == ".wav":
 #         print(f"{arq} é um arquivo de áudio")
 
-tema = ["Oi","Ola"]
-texto = "Ola amigo"
+import os
 
-if tema in texto:
-    print(True)
+directory_path = "InUse"
+try:
+    files = os.listdir(directory_path)
+    for file in files:
+        file_path = os.path.join(directory_path, file)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+except OSError:
+    print("Error occurred while deleting files.")

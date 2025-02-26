@@ -1,7 +1,8 @@
-from openai import OpenAI
+import openai
 import os
 import pasteLocal as pl
 import speech_recognition as sr 
+import checkNik as cn
 import pyttsx3
 from pydub import AudioSegment
 #converter o audio do GravacaoVoz em texto, caso a palavra Pesquisar for falada
@@ -24,26 +25,8 @@ def AudiotoText(caminho_audio):
         texto = texto.lower()
         print("Texto reconhecido:", texto)
         
-        # VERIFICAÇÃO SE O NIK FOI ATIVO (mover para um arquivo independente depois)
-        #variável para indentificar se NIK foi chamado
-        nik_active = False
-        ativaction_words = ['niq','nique','nike','nik','nic','nick','nyc','neek','nikke','nyk','nyq','nyque'
-                            'nyke','nykke','nyck','knick','nicke']
-        
-        for nik in ativaction_words:
-            if nik in texto:
-                nik_active = True
-                break
-        
-        if nik_active:
-            #nik foi ativado
-            #terminar código depois
-            print("a")
-        
-        else:
-            #nik não foi ativado
-            #terminar código depois
-            print("a")
+        # VERIFICAÇÃO SE O NIK FOI ATIVO
+        cn.check_Nik(texto)
         
     except sr.UnknownValueError:
         print("O Google Speech Recognition não conseguiu entender o áudio")

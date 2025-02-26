@@ -5,6 +5,7 @@ import http.server
 import socketserver
 import webbrowser
 import os
+import sys
 import pasteLocal as pl
 import controller as con
 
@@ -31,11 +32,12 @@ with socketserver.TCPServer(("", PORT), Handler) as httpd:
     print(f"Acesse em: http://localhost:{PORT}")
     
     # Abre o navegador automaticamente
-    webbrowser.open_new_tab(f"http://localhost:{PORT}")
+    #webbrowser.open_new_tab(f"http://localhost:{PORT}")
     
     # Mantém o servidor rodando
-    print("Seridor Rodadndo!") 
-    con.checkFileAudio()
+    print("Seridor Rodadndo!")
+    while True: 
+        con.checkFileAudio()
     httpd.serve_forever()
 
 
