@@ -94,5 +94,5 @@ def reconhecer_audio(nome_arquivo):
         print(f"Erro ao solicitar resultados do serviço de reconhecimento de fala: {e}")
 
 # Exemplo de uso
-nome_arquivo = "audio_gravado.wav"
+nome_arquivo = "audio.wav"
 gravar_audio(nome_arquivo, tempo_maximo=5)  # Define o tempo máximo de gravação como 30 segundos

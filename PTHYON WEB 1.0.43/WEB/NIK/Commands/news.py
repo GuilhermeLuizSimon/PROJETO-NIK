@@ -1,4 +1,4 @@
-import requests
+
 
 # AI de coleta de NOTÍCIAS
 # transformar tudo isso em uma função que possa ser chamada
@@ -7,21 +7,17 @@ import requests
 # Se a estrutura da pesquisa se mantiver a mesma, a coleta
 # dos dados vei ocorrer conforme o esperado
 
-#---------------------------------------------------------------------------------------
-# (AVISO) GUILHERME
-# quando for colocar no computador de servidor, fazer login e substituir a API atual
-# e colocar sua nova no lugar
-# Link do site: https://newsapi.org/pricing
-#---------------------------------------------------------------------------------------
+import requests
+from API import API_KEY_NEWS
+
 def Ai_news(command):
     
-    api_key = '44cd41e0713247bb8c29e110c55d4f90'
 
     #Palavra-chave que você deseja pesquisar (pode ser qualquer coisa)
     keyword = 'brasil'
 
     #Definir o URL com a pesquisa personalizada
-    url = f'https://newsapi.org/v2/everything?q={keyword}&language=pt&pageSize=3&apiKey={api_key}'
+    url = f'https://newsapi.org/v2/everything?q={keyword}&language=pt&pageSize=3&apiKey={API_KEY_NEWS}'
 
     #Fazer a requisição GET para a NewsAPI
     response = requests.get(url)

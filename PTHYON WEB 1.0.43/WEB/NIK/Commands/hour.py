@@ -7,7 +7,7 @@
 from datetime import datetime, date
 
 def Ai_hour(command):
-        
+
         # PODE RETORNAR:
         # Horário
         # Dia
@@ -30,8 +30,29 @@ def Ai_hour(command):
         print(f"{hour}h{minutes}min\n Hoje é ",end="")
 
         weekdays = ["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"]
+        meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+        month = meses[month]
         #Dia da Semana
         week = clock.weekday()
 
         day_week = weekdays[week]
+
+        if command in ['horas']:
+                return f'O horário atual é {hour} horas e {minutes} minutos'
+                
+        if command in ['dia da semana']:
+                return f'Hoje é {day_week}'
+                
+        if command in ['dia'] and not(command in ['mes'] or command in ['ano']):
+                
+                return f'Hoje é dia {day} de {month} de {year}'
+                
+        if command in ['mes']:
+               return f'O mês de hoje é {month}'
+                
+                
+        if command in ['ano']:
+                return f'O ano atual é {year}'
+                
+
 

@@ -7,24 +7,17 @@
 # Se a estrutura da pesquisa se mantiver a mesma, a coleta
 # dos dados vei ocorrer conforme o esperado
 
-#---------------------------------------------------------------------------------------
-# (AVISO) GUILHERME
-# quando for colocar no computador de servidor, fazer login e substituir a API atual
-# e colocar sua nova no lugar
-# Link do site: https://openweathermap.org/
-#---------------------------------------------------------------------------------------
-
 import requests
+from API import API_KEY_WEATHER
 
 def Ai_weather(command):
-    API_key = "6da14a8a13f5492d2e6c433c9aec555d"
 
     # OU colocar com fixo "jundiai" OU perguntar ao usuário sua cidade
     #nome da cidade
     city_name = "sao paulo"
 
     # OpenWeather
-    link = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_key}"
+    link = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY_WEATHER}"
 
     print(link)
     requisicao = requests.get(link)

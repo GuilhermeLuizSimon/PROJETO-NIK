@@ -1,37 +1,34 @@
+#########################################################################
+# CONVERTOR DE ÁUDIO
+#########################################################################
+# responsável pela conversão dos áudios
+
 import openai
 import os
-import pasteLocal as pl
 import speech_recognition as sr 
-import checkNik as cn
+import checkNik as checkN
 import pyttsx3
 from pydub import AudioSegment
 #converter o audio do GravacaoVoz em texto, caso a palavra Pesquisar for falada
 
 # função de audio para texto
-def AudiotoText(caminho_audio):
-    audio = AudioSegment.from_file(caminho_audio) 
-    audio.export("audio.wav", format="wav") # Converter para WAV 
+def AudiotoText(nome_arquivo):
+    r = sr.Recognizer()
 
-    #Inicializar o reconhecedor
-    reconhecedor = sr.Recognizer()
-
-    #Abrir o arquivo de áudio
-    with sr.AudioFile("audio.wav") as fonte:
-        audio_gravado = reconhecedor.record(fonte)  # Ler o áudio
-
-    #Tentar reconhecer o áudio
+    with sr.AudioFile(nome_arquivo) as source:
+        audio = r.record(source)  # Lê o arquivo de áudio
     try:
-        texto = reconhecedor.recognize_google(audio_gravado, language='pt-BR')
-        texto = texto.lower()
+        texto = r.recognize_google(audio, language='pt-BR')  # Reconhece o áudio
         print("Texto reconhecido:", texto)
         
-        # VERIFICAÇÃO SE O NIK FOI ATIVO
-        cn.check_Nik(texto)
+        # Verifica se a palavra "NIK" foi mencionada
+        checkN.check_Nik(texto)
         
     except sr.UnknownValueError:
-        print("O Google Speech Recognition não conseguiu entender o áudio")
+        print("Não consegui entender o áudio.")
     except sr.RequestError as e:
         print(f"Erro ao solicitar resultados do serviço de reconhecimento de fala: {e}")
+
 
 
 def TexttoAudio(text):
