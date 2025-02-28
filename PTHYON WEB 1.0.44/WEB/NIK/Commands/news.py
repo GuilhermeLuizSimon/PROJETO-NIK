@@ -1,5 +1,3 @@
-
-
 # AI de coleta de NOTÍCIAS
 # transformar tudo isso em uma função que possa ser chamada
 
@@ -8,7 +6,7 @@
 # dos dados vei ocorrer conforme o esperado
 
 import requests
-from API import API_KEY_NEWS
+from Commands.request_API import API_KEY_NEWS
 
 def Ai_news(command):
     

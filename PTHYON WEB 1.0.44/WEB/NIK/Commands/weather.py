@@ -1,5 +1,3 @@
-# Um pedaço da utilidade da captura das informações 
-
 # AI de coleta do CLIMA
 # transformar tudo isso em uma função que possa ser chamada
 
@@ -8,7 +6,7 @@
 # dos dados vei ocorrer conforme o esperado
 
 import requests
-from API import API_KEY_WEATHER
+from Commands.request_API import API_KEY_WEATHER
 
 def Ai_weather(command):
 

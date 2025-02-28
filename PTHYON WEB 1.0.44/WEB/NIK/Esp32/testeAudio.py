@@ -6,7 +6,7 @@ import speech_recognition as sr
 import time
 
 # Define o caminho da pasta SongSaver
-SONG_SAVER_PATH = "PTHYON WEB 1.0.4/NIK/SongSaver"
+SONG_SAVER_PATH = "WEB/NIK/SongSaver"
 
 def gravar_audio(nome_arquivo, limiar=0.01, tempo_silencio=1, tempo_maximo=30):
     print("Gravando... Fale agora.")

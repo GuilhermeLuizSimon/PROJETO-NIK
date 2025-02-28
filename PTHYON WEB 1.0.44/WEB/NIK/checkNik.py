@@ -34,6 +34,7 @@ def check_Nik(texto):
             print("Foi ouvido NIK")
             #nik foi ativado
             #terminar código depois
+            reponse = "Desculpe, não compreendi a requisição"
             
             #verificar se "Pesquisa" foi dito:
             if check_name(texto,["pesquise","pesquisar"]):
@@ -61,6 +62,7 @@ def check_Nik(texto):
                 response = "Não foi entendido sua questão"
 
             audioC.TexttoAudio(response)
-        #não importa o resultado
+    # não importa o resultado
+    # sempre que a análise do áudio dentro do InUse for encerrafa, ela será excluida
     path = path + "\InUse"
     ctrl.deleteFile(path)

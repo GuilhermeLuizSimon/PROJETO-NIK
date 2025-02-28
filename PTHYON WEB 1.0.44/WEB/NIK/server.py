@@ -44,7 +44,8 @@ with socketserver.TCPServer(("", PORT), Handler) as httpd:
     while True: 
         #chegagem eterna de arquivos de áudio chegos do esp 32
         contrl.checkFileAudio()
-        time.sleep(10000.0) #linha de teste
+        # time.sleep(10000.0) #linha de teste
+        os.system('cls')
     httpd.serve_forever()
 
 

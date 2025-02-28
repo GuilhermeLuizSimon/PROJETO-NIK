@@ -4,11 +4,12 @@
 # responsável pela conversão dos áudios
 
 import openai
-import os
+import os, time
 import speech_recognition as sr 
 import checkNik as checkN
 import pyttsx3
 from pydub import AudioSegment
+# import gtts
 #converter o audio do GravacaoVoz em texto, caso a palavra Pesquisar for falada
 
 # função de audio para texto
@@ -32,6 +33,20 @@ def AudiotoText(nome_arquivo):
 
 
 def TexttoAudio(text):
+    print(f"texto par audio: {text}")
+    # time.sleep(1.0)
+
+    # # Criação do objeto gTTS
+    # tts = gtts.gTTS(text=text, lang='pt-br')  
+
+    # # Salvando o áudio em um arquivo
+    # tts.save("Esp32/command.mp3")
+
+    # # Opcional: Reproduzir o áudio (apenas em sistemas que suportam)
+    # os.system("start command.mp3")
+
+
+    # ===================================================================================
     #tranformar audio em texto
     #Inicializa o mecanismo de conversão de texto em fala
     engine = pyttsx3.init()
@@ -49,3 +64,5 @@ def TexttoAudio(text):
 
     #Converte o texto em fala
     engine.say(text)
+    engine.runAndWait()
+    engine.stop()
