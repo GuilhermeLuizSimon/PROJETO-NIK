@@ -28,7 +28,7 @@ def Ai_hour(command):
 
         weekdays = ["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"]
         meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
-        month = meses[month]
+        month = meses[month-1]
         #Dia da Semana
         week = clock.weekday()
 

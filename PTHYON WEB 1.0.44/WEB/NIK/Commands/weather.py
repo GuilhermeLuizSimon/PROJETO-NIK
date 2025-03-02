@@ -7,9 +7,10 @@
 
 import requests
 from Commands.request_API import API_KEY_WEATHER
+import pandas as pd
+
 
 def Ai_weather(command):
-
     # OU colocar com fixo "jundiai" OU perguntar ao usuário sua cidade
     #nome da cidade
     city_name = "sao paulo"

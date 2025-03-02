@@ -47,22 +47,93 @@ def TexttoAudio(text):
 
 
     # ===================================================================================
-    #tranformar audio em texto
-    #Inicializa o mecanismo de conversão de texto em fala
+    # #tranformar audio em texto
+    # #Inicializa o mecanismo de conversão de texto em fala
+    # engine = pyttsx3.init()
+
+    # #Define a taxa de fala (opcional)
+    # engine.setProperty('rate', 150)  # Aumente ou diminua a taxa conforme necessário
+
+    # #Define o volume (opcional)
+    # engine.setProperty('volume', 1)  # Volume de 0.0 a 1.0
+
+    # # #Define a voz (opcional)
+    # voices = engine.getProperty('voices')
+
+    # #Seleciona a voz masculina (geralmente a primeira voz é masculina)
+    # engine.setProperty('voice', voices[0].id)
+
+    # # Converte o texto em fala
+    # engine.say(text)
+    # engine.runAndWait()
+    # engine.stop()
+    
+    #=================================================================================
+    # The text that you want to convert to audio
+
+    # Language in which you want to convert
+    # language = 'pt'
+
+    # # Passing the text and language to the engine, 
+    # # here we have marked slow=False. Which tells 
+    # # the module that the converted audio should 
+    # # have a high speed
+    # myobj = gTTS(text=text, lang=language, slow=False, tld='com.br')
+
+    # # Saving the converted audio in a mp3 file named
+    # # welcome 
+    # myobj.save("Esp32/welcome.mp3")
+
+    # # Initialize the mixer module
+    # pygame.mixer.init()
+
+    # # Load the mp3 file
+    # pygame.mixer.music.load("Esp32/welcome.mp3")
+
+    # # Play the loaded mp3 file
+    # pygame.mixer.music.play()
+    
+# ================================================================================
+    #     # Inicializa o mecanismo de TTS
     engine = pyttsx3.init()
 
-    #Define a taxa de fala (opcional)
+    # Obtém as vozes disponíveis
+    vozes = engine.getProperty('voices')
+
+    # Seleciona a voz masculina (geralmente a primeira ou a segunda)
+    for voz in vozes:
+        if 'masculino' in voz.name.lower():  # Verifica se a voz é masculina
+            engine.setProperty('voice', voz.id)
+            break
+
+    # Define a taxa de fala (opcional)
     engine.setProperty('rate', 150)  # Aumente ou diminua a taxa conforme necessário
 
-    #Define o volume (opcional)
-    engine.setProperty('volume', 1)  # Volume de 0.0 a 1.0
-
-    #Define a voz (opcional)
-    voices = engine.getProperty('voices')
-    #Seleciona a voz masculina (geralmente a primeira voz é masculina)
-    engine.setProperty('voice', voices[0].id)
-
-    #Converte o texto em fala
+    # Converte o texto em fala
     engine.say(text)
+    engine.save_to_file(text,'Esp32/command.mp3')
+
+    # Aguarda até que a fala termine
     engine.runAndWait()
-    engine.stop()
+    
+    # ============================================================================
+    # import boto3
+
+    # # Inicializa o cliente do Polly
+    # voz = 'Ricardo'
+    # polly = boto3.client('polly')
+
+    # # Solicita a síntese de fala
+    # response = polly.synthesize_speech(
+    #     Text=text,
+    #     OutputFormat='mp3',
+    #     VoiceId=voz
+    # )
+
+    # # Salva o áudio gerado
+    # with open("Esp32/audio.mp3", "wb") as file:
+    #     file.write(response['AudioStream'].read())
+
+    # # Reproduz o áudio
+    # os.system("start Esp32/audio.mp3")  # Para Windows, use "start", para Linux use "xdg-open"
+

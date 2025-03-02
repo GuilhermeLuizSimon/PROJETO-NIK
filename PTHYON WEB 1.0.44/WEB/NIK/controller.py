@@ -41,7 +41,7 @@ def checkInUseAudio():
         if estensao == ".mp3" or estensao == ".wav":
             return arq, True
         
-    return arq, False
+    return "", False
 
 
 def checkFileAudio():
