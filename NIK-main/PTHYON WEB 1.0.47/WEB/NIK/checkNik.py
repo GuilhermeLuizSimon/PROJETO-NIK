@@ -26,7 +26,7 @@ def check_Nik(texto):
     texto = texto.lower()
     path = pastl.paste()
     ativaction_words = ['niq','nique','nike','nik','nic','nick','nyc','neek','nikke','nyk','nyq','nyque',
-                        'nyke','nykke','nyck','knick','nicke','nikki','fique','rick']
+                        'nyke','nykke','nyck','knick','nicke','nikki','fique','rick','vick','mik']
     
     nik_active = check_name(texto,ativaction_words)
     
@@ -34,8 +34,13 @@ def check_Nik(texto):
             print("Foi ouvido NIK")
             #nik foi ativado
             #terminar código depois
-            reponse = "Desculpe, não compreendi a requisição"
+            response = "Desculpe, não compreendi a requisição"
             
+            # ================================================================
+            # FELIPE: não seria mais intuitivo colocar a forma de pesquisa por IA como a última condição? já que normalmente você não pergunta a uma
+            # alexa pesquisar, mas já faz a pergunta sem a palavra "pesquisar"
+            # ================================================================
+
             #verificar se "Pesquisa" foi dito:
             if check_name(texto,["pesquise","pesquisar"]):
                 response = ollama.Ai_ollama(texto)
@@ -55,7 +60,7 @@ def check_Nik(texto):
                 response = news.Ai_news(texto)
             
             #verificar se "Clima" foi dito:
-            elif check_name(texto,["clima","previsao do tempo","previsao","previsão","previsão do tempo","tempo"]):
+            elif check_name(texto,["clima","previsao do tempo","previsao","previsão","previsão do tempo","tempo","previzao"]):
                 response = weather.Ai_weather(texto)
             
             else:

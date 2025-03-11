@@ -9,7 +9,7 @@
 # e colocar sua nova no lugar
 # Link do site: https://openweathermap.org/
 #---------------------------------------------------------------------------------------
-API_KEY_WEATHER = '6da14a8a13f5492d2e6c433c9aec555d'
+API_KEY_WEATHER = '1be2b5b874df23f6537e2cd3c2067966'
                    #API utilizada como teste
 
 #---------------------------------------------------------------------------------------

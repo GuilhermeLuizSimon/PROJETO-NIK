@@ -1,5 +1,7 @@
-# AI de coleta de NOTÍCIAS
-# transformar tudo isso em uma função que possa ser chamada
+#########################################################################
+# AI DE NOTÍCIAS
+#########################################################################
+# responsável por trazer as notícias mais recentes ao usuário
 
 # !!!
 # Se a estrutura da pesquisa se mantiver a mesma, a coleta
@@ -12,7 +14,10 @@ def Ai_news(command):
     
 
     #Palavra-chave que você deseja pesquisar (pode ser qualquer coisa)
-    keyword = 'brasil'
+
+    # ==================
+    # TESTE DEFINIDO COMO
+    keyword = 'politica'
 
     #Definir o URL com a pesquisa personalizada
     url = f'https://newsapi.org/v2/everything?q={keyword}&language=pt&pageSize=3&apiKey={API_KEY_NEWS}'
@@ -27,8 +32,11 @@ def Ai_news(command):
     # função TexttoAudio(text) do audioConverter.py
 
     #Verificar se a requisição foi bem-sucedida
+    return_response = ""
+
     if response.status_code == 200:
         data = response.json()
+        return_response = f'Consegui encontrar algumas notícias sobre {keyword}.'
 
         # Exibir as notícias encontradas
         for article in data['articles']:
@@ -36,5 +44,10 @@ def Ai_news(command):
             print(f"Description: {article['description']}")
             print(f"URL: {article['url']}")
             print("-" * 50)
+
+            return_response = return_response + str(article['title']) + ',' + str(article['description']) + '.'
+
+        return return_response
     else:
         print(f"Erro na requisição: {response.status_code}")
+        return 'Não consegui acessar as notícias, por favor, pergunte mais tarde'

@@ -1,3 +1,8 @@
+#########################################################################
+# AI DE PESQUISA
+#########################################################################
+# responsável por retornar a resposta vinda da interação da IA instalada na máquina
+
 import subprocess
 
 
