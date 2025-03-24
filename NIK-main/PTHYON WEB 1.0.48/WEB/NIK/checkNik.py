@@ -16,6 +16,7 @@ import audioConverter as audioC
 def check_name(texto,list):
     # lista: parametros de pesquisa
     # texto: valor procurado
+    list = list[::-1]
     for nik in list:
         if nik in texto:
             return True

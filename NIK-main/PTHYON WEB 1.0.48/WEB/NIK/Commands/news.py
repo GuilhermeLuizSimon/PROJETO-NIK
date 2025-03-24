@@ -8,7 +8,7 @@
 # dos dados vei ocorrer conforme o esperado
 
 import requests
-from Commands.request_API import API_KEY_NEWS
+from request_API import API_KEY_NEWS
 
 def Ai_news(command):
     
@@ -40,14 +40,13 @@ def Ai_news(command):
 
         # Exibir as notícias encontradas
         for article in data['articles']:
-            print(f"Title: {article['title']}")
-            print(f"Description: {article['description']}")
-            print(f"URL: {article['url']}")
-            print("-" * 50)
 
-            return_response = return_response + str(article['title']) + ',' + str(article['description']) + '.'
+            return_response = return_response + str(article['title']) + ',' + str(article['description']) + '. '
 
         return return_response
     else:
         print(f"Erro na requisição: {response.status_code}")
         return 'Não consegui acessar as notícias, por favor, pergunte mais tarde'
+    
+
+print(Ai_news("Quais são as notícias"))

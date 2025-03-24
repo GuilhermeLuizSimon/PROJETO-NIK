@@ -3,6 +3,17 @@
 #########################################################################
 # responsável pela conversão dos áudios
 
+
+#########################################################################
+# O QUE ESTÁ FALTANDO?
+#########################################################################
+# Terminar a função de transformar texto em áudio
+
+# Mudar a voz do áudio para MASCULINO, ou teremos que mudar o nome da marca para FEMININO
+
+# salvar a resposta em um arquivo e salvar na pasta esp32
+#########################################################################
+
 import speech_recognition as sr 
 import checkNik as checkN
 import pyttsx3

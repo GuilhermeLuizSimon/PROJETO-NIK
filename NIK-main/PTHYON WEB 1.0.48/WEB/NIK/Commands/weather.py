@@ -8,7 +8,7 @@
 # dos dados vei ocorrer conforme o esperado
 
 import requests
-from Commands.request_API import API_KEY_WEATHER
+from request_API import API_KEY_WEATHER
 
 def Ai_weather(command):
 
@@ -20,7 +20,7 @@ def Ai_weather(command):
     city_name = "sao paulo"
 
     # OpenWeather
-    link = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY_WEATHER}"
+    link = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY_WEATHER}&lang=pt_br"
 
     print(link)
     requisicao = requests.get(link)
@@ -47,4 +47,6 @@ def Ai_weather(command):
     else:
         print(f"Erro na requisição: {requisicao.status_code}")
         return 'Não consegui acessar o clima, por favor, pergunte mais tarde'
+    
+print(Ai_weather("qual o clima de hoje?"))
 
