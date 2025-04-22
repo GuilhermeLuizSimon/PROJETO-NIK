@@ -1,12 +1,10 @@
-/*
-
-*/
 
 # include <WiFi.h>
 # include <HTTPClient.h>
 # include <WiFiClientSecure.h>
 # include <SPIFFS.h>
 # include <FS.h>
+#include <driver/i2s.h>
 
 // URL de aonde se localiza o servidor em que o php está
 String URL = "C:/xampp/htdocs/diretorio_do_arq/arquivo.php";

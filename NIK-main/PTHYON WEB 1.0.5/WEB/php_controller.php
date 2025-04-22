@@ -19,11 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // executa a criação do arquivo de áudio e checagem
     if (file_put_contents($caminhoCompleto, $rawData)) {
         
-        /**
-         * (Sujestão: Como o php cria um nome único ao arquivo de áudio, criar
-         * um arquivo com seu nome para o Python ler e saber o nome desse arquivo)
-         * CÓDIGO DE EXECUÇÃO DO PYTHON
-         */
+        // executar o script do python para que ele crie o audio resposta.wav
+
+        // espaceshellcmd e escapeshellarg podem ser substituídos pelo shell_exec,
+        // mas foram colocados por segurança de caracteres especiais
+        $command = escapeshellcmd("python3 process_audio.py " . escapeshellarg($caminhoCompleto));
+        $resultado = shell_exec($command);
 
          // Retornar resposta de áudio ao esp32
         $respostaAudio = "NIK/Esp32/resposta.wav"; // caminho do arquivo a ser devolvido
