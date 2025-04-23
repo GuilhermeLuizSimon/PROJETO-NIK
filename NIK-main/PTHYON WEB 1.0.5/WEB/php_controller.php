@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // procura o arquivo de resultado do python 
         // caso o php continue lendo o código sem o python ter encerrado
         $tentativas = 0;
-        $result_file = "WEB/NIK/Esp32/result.txt";
+        $result_file = "NIK/Esp32/result.txt";
         while (!file_exists($result_file)) {
             // manter na média 20 segundos
             if (++$tentativas > 200) {
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unlink($result_file);
         
          // Retornar resposta de áudio ao esp32
-        $respostaAudio = "NIK/Esp32/resposta.wav"; // caminho do arquivo a ser devolvido
+        $respostaAudio = "NIK/Esp32/response.wav"; // caminho do arquivo a ser devolvido
 
         // verifica se o arquivo existe
         if (file_exists($respostaAudio)) {
@@ -56,7 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // envio de audio
             header("Content-Type: audio/wav");      // ou outro tipo correto do arquivo
             header("Content-Length: " . filesize($respostaAudio));
+            header("Content-Disposition: attachment; filename=response.wav");
             readfile($respostaAudio);
+
+            //depois disso, o arquivo de áudio é excluido
+            unlink($respostaAudio);
 
             // encerra o código
             exit;
@@ -73,16 +77,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 function ErrorAudio(){
-    // Definir o tipo de conteúdo como áudio WAV
-    header("Content-Type: audio/wav");
 
     // Caminho para o arquivo de áudio de erro
-    $error_audio_path = "audios/error_audio.wav";
+    $error_audio_path = "NIK/Error_case/response.wav";
     
     // Verificar se o arquivo de erro existe
     if (file_exists($error_audio_path)) {
+
+        // Definir o tipo de conteúdo como áudio WAV
+        header("Content-Type: audio/wav");     
+        header("Content-Length: " . filesize($error_audio_path));
+        header("Content-Disposition: attachment; filename=response.wav");
+
         // Ler e enviar o arquivo de áudio
         readfile($error_audio_path);
+
+        exit;
+
     } else {
         // Caso o arquivo de erro não exista, enviar um código de erro HTTP 500
         http_response_code(500);

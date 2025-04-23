@@ -75,6 +75,14 @@ def TexttoAudio(text):
     engine.runAndWait()
     engine.stop()
     
+    # ============================================================
+    # LEMBRETE
+    # quando for salvar o arquivo de audio de resposta, salvar como:
+    # Na pasta WEB/NIK/Esp32/
+    # Nome do arquivo: response.wav
+    # ============================================================
+    
+    
     # se não ocorreu erro, o código cria um arquivo
     # para sinalizar ao php que foi completado o código python
     create_file = open("WEB/NIK/Esp32/result.txt", "a")
