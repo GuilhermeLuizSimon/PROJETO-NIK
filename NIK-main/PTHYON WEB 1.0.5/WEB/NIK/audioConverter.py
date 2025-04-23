@@ -74,3 +74,7 @@ def TexttoAudio(text):
     engine.say(text)
     engine.runAndWait()
     engine.stop()
+    
+    # se não ocorreu erro, o código cria um arquivo
+    # para sinalizar ao php que foi completado o código python
+    create_file = open("WEB/NIK/Esp32/result.txt", "a")

@@ -26,6 +26,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $command = escapeshellcmd("python3 process_audio.py " . escapeshellarg($caminhoCompleto));
         $resultado = shell_exec($command);
 
+        // procura o arquivo de resultado do python 
+        // caso o php continue lendo o código sem o python ter encerrado
+        $tentativas = 0;
+        $result_file = "WEB/NIK/Esp32/result.txt";
+        while (!file_exists($result_file)) {
+            // manter na média 20 segundos
+            if (++$tentativas > 200) {
+                // Sai do loop mas continua o script
+                break;
+            }
+            usleep(100000); // espera 100ms
+        }
+
+        // última checagem da existencia do arquivo de resposta
+        if(!file_exists($result_file)){
+            ErrorAudio();
+            exit;
+        }
+        // como ele existe, o php pode apagá-lo e continuar a execução
+        unlink($result_file);
+        
          // Retornar resposta de áudio ao esp32
         $respostaAudio = "NIK/Esp32/resposta.wav"; // caminho do arquivo a ser devolvido
 
@@ -36,7 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Content-Type: audio/wav");      // ou outro tipo correto do arquivo
             header("Content-Length: " . filesize($respostaAudio));
             readfile($respostaAudio);
+
+            // encerra o código
             exit;
+
         } else {
 
             ErrorAudio();
