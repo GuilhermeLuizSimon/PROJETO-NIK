@@ -82,7 +82,7 @@ void loop() {
   if(WiFi.status() == WL_CONNECTED) {
 
     // pega o arquivo de audio salvo pelo microfone
-    File command = SPIFFS.open("/arquivo.wav","r");
+    File command = SPIFFS.open("/wavFile.wav","r");
 
     // verifica se o arquivo EXISTE
     if(!command){
