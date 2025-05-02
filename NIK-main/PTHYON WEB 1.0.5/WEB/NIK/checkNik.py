@@ -13,14 +13,26 @@ import controller as ctrl
 import pasteLocal as pastl
 import audioConverter as audioC
 
-def check_name(texto,list):
+def check_name(text,list):
     # lista: parametros de pesquisa
     # texto: valor procurado
-    list = list[::-1]
     for nik in list:
-        if nik in texto:
+        if nik in text:
             return True
     
+    return False
+
+def check_item_name(text,list):
+    # As palavras do texto seram divididas
+    words_of_text = text.split()
+    # A leitura será feita de trás para frente para previnir correções da fala do usuário no áudio
+    words_of_text = words_of_text[::-1]
+
+    for word in words_of_text:
+        for item in list:
+            if word == item:
+                return True
+
     return False
 
 def check_Nik(texto):
@@ -43,25 +55,25 @@ def check_Nik(texto):
             # ================================================================
 
             #verificar se "Pesquisa" foi dito:
-            if check_name(texto,["pesquise","pesquisar"]):
+            if check_item_name(texto,["pesquise","pesquisar"]):
                 response = ollama.Ai_ollama(texto)
             
             #verificar se "Horas" foi dito:
-            elif check_name(texto,["horas","dia","dia da semana","mês","mes","ano","horário","horario"]):
+            elif check_item_name(texto,["horas","dia","dia da semana","mês","mes","ano","horário","horario"]):
                 print("vendo horas")
                 time.sleep(3.0)
                 response = hour.Ai_hour(texto)
             
             #verificar se "Musica" foi dito:
-            elif check_name(texto,["toque a musica"]):
+            elif check_item_name(texto,["toque a musica"]):
                 response = music.Ai_music(texto)
             
             #verificar se "noticias" foi dito:
-            elif check_name(texto,["noticias","noticia"]):
+            elif check_item_name(texto,["noticias","noticia"]):
                 response = news.Ai_news(texto)
             
             #verificar se "Clima" foi dito:
-            elif check_name(texto,["clima","previsao do tempo","previsao","previsão","previsão do tempo","tempo","previzao"]):
+            elif check_item_name(texto,["clima","previsao do tempo","previsao","previsão","previsão do tempo","tempo","previzao"]):
                 response = weather.Ai_weather(texto)
             
             else:
